@@ -15,10 +15,14 @@ public class Item1 {
 //호출될 때마다 인스턴스를 새로 생성하지 않아도 된다.
 class Boolean{
     boolean b;
+
+    public static Boolean TRUE = new Boolean(true);
+    public static Boolean FALSE = new Boolean(false);
+
     public Boolean(boolean b){
         this.b = b;
     }
     public static Boolean valueOf(boolean b){
-        return new Boolean(b);
+        return b ? Boolean.TRUE : Boolean.FALSE;
     }
 }
