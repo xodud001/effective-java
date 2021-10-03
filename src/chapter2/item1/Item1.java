@@ -1,4 +1,4 @@
-package item1;
+package chapter2.item1;
 
 public class Item1 {
     public static void main(String[] args) {
@@ -12,12 +12,13 @@ public class Item1 {
 
 
 }
+
 //호출될 때마다 인스턴스를 새로 생성하지 않아도 된다.
 class Boolean{
     boolean b;
 
-    public static Boolean TRUE = new Boolean(true);
-    public static Boolean FALSE = new Boolean(false);
+    public static final Boolean TRUE = new Boolean(true);
+    public static final Boolean FALSE = new Boolean(false);
 
     public Boolean(boolean b){
         this.b = b;
