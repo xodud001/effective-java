@@ -16,12 +16,15 @@ public class Stack {
     public void push(Object e){
         elements[size++] = e;
     }
-    // pop을 할 때 size 이후에 남아있는 객체들은 다 쓴 참조 때문에 가비지 컬렉터에서 회수되지 않는다
-    // 활성 영역은 인덱스가 size보다 작은 영역의 원소들로만 이루어진다
+    
+    // 활성 영역 밖의 원소들의 참조를 해제해서 가비지 컬렉터에 의해 회수되도록 함
     public Object pop(){
         if (size == 0)
             throw new EmptyStackException();
-        return elements[--size];
+        Object result = elements[--size];
+        elements[size] = null;
+        return result;
+
     }
 
     private void ensureCapacity(){
