@@ -16,7 +16,7 @@ public class Stack {
     public void push(Object e){
         elements[size++] = e;
     }
-    
+
     // 활성 영역 밖의 원소들의 참조를 해제해서 가비지 컬렉터에 의해 회수되도록 함
     public Object pop(){
         if (size == 0)
