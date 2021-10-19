@@ -13,11 +13,7 @@ public class Point {
 
     @Override
     public boolean equals(Object obj) {
-        //instanceof 검사를 getClass 검사로 바꾸면 할 수 있는 것 처럼 보인다.
-        // 하지만 리스코프 치환 원칙을 위배했다.
-        // Point를 상속한 하위 클래스는 정의상 Point이므로 어디서든 Point로써 활용될 수 있어야 하지만
-        // 여기서는 Point로 처리되지 않는다.
-        if(obj== null || obj.getClass() != getClass())
+        if(!(obj instanceof Point))
             return false;
 
         Point p = (Point) obj;
@@ -25,7 +21,7 @@ public class Point {
     }
 
     public static void main(String[] args) {
-        test2();
+        test1();
     }
 
     public static void test1(){
@@ -35,8 +31,8 @@ public class Point {
         Point p2 = new Point(1, 2);
         ColorPoint p3 = new ColorPoint(1, 2, Color.BLUE);
 
-        System.out.println(p1.equals(p2));
-        System.out.println(p2.equals(p3));
+        System.out.println(p1.asPoint().equals(p2));
+        System.out.println(p2.equals(p3.asPoint()));
 
         System.out.println(p1.equals(p3));
     }
