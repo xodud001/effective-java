@@ -1,4 +1,7 @@
-package chapter3.item10;
+package chapter3.item11;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PhoneNumber {
     private final short areaCode, prefix, lineNum;
@@ -30,26 +33,10 @@ public class PhoneNumber {
     }
 
     public static void main(String[] args) {
-        PhoneNumber p1 = new PhoneNumber( (short)11, (short)11, (short)11);
-        PhoneNumber p2 = new PhoneNumber( (short)11, (short)11, (short)11);
-        PhoneNumber p3 = new PhoneNumber( (short)11, (short)11, (short)11);
-        println("대칭적인가");
-        System.out.println(p1.equals(p2));
-        System.out.println(p2.equals(p1));
-        println("");
-
-        println("추이성이 있는가");
-        System.out.println(p1.equals(p2));
-        System.out.println(p2.equals(p3));
-        System.out.println(p1.equals(p3));
-        println("");
-
-        println("일관적인가");
-        boolean flag = true;
-        for (int i = 0; i < 10; i++)
-            flag = flag && p1.equals(p2);
-
-        System.out.println(flag);
+        Map<PhoneNumber, String> map = new HashMap<>();
+        map.put(new PhoneNumber((short)111, (short)111, (short)111), "Hello");
+        PhoneNumber finder = new PhoneNumber((short)111, (short)111, (short)111);
+        System.out.println(map.get(finder));
     }
 
     public static void println(String s){
