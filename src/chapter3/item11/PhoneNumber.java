@@ -2,6 +2,7 @@ package chapter3.item11;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class PhoneNumber {
     private final short areaCode, prefix, lineNum;
@@ -34,10 +35,11 @@ public class PhoneNumber {
 
     @Override
     public int hashCode() {
-        int result = Short.hashCode(areaCode);
-        result = 31 * result + Short.hashCode(prefix);
-        result = 31 * result + Short.hashCode(lineNum);
-        return result;
+        //한줄로 간단하게 할 수 있지만 성능이 살짝 아쉽다.
+        // 입력 입수를 받기 위해 배열이 만들어지고
+        // 입력 중 기본 타입이 있다면 박싱과 언박싱이 이루어짐
+        // 성능이 민감하지 않은 경우에만 사용
+        return Objects.hash(areaCode, prefix, lineNum);
     }
 
     public static void main(String[] args) {
