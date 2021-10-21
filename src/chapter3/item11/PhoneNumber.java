@@ -32,6 +32,14 @@ public class PhoneNumber {
 
     }
 
+    @Override
+    public int hashCode() {
+        int result = Short.hashCode(areaCode);
+        result = 31 * result + Short.hashCode(prefix);
+        result = 31 * result + Short.hashCode(lineNum);
+        return result;
+    }
+
     public static void main(String[] args) {
         Map<PhoneNumber, String> map = new HashMap<>();
         map.put(new PhoneNumber((short)111, (short)111, (short)111), "Hello");
