@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class PhoneNumber {
+    private int hashCode; // 0으로 자동 초기화
     private final short areaCode, prefix, lineNum;
 
     public PhoneNumber(short areaCode, short prefix, short lineNum) {
@@ -35,11 +36,17 @@ public class PhoneNumber {
 
     @Override
     public int hashCode() {
-        //한줄로 간단하게 할 수 있지만 성능이 살짝 아쉽다.
-        // 입력 입수를 받기 위해 배열이 만들어지고
-        // 입력 중 기본 타입이 있다면 박싱과 언박싱이 이루어짐
-        // 성능이 민감하지 않은 경우에만 사용
-        return Objects.hash(areaCode, prefix, lineNum);
+        // 클래스가 불변이고 해시코드를 계산하는 비용이 크다면 캐싱 방식을 고려
+        // hashCode가 처음 불릴 때 계산하는 지연 초기화 전략 사용
+        // 이때 지연 초기화를 하려면 클래스를 스레드 안전하게 만들도록 신경 써야 한다.
+        int result = hashCode;
+        if(result != 0){
+            result = Short.hashCode(areaCode);
+            result = 31 * result + Short.hashCode(prefix);
+            result = 31 * result + Short.hashCode(lineNum);
+            hashCode = result;
+        }
+        return result;
     }
 
     public static void main(String[] args) {
