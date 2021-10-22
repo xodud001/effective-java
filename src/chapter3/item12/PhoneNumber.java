@@ -41,6 +41,11 @@ public class PhoneNumber {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return areaCode + "-" + prefix + "-" + lineNum;
+    }
+
     public static void main(String[] args) {
         // toString을 재정의 하지 않았기 때문에 쓸모 없는 로그만 남는다
         PhoneNumber phoneNumber = new PhoneNumber((short)111,(short)111,(short)111);
