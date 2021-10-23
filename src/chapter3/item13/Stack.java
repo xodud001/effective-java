@@ -32,13 +32,19 @@ public class Stack implements Cloneable{
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public Stack clone() {
+        try{
+            Stack result = (Stack) super.clone();
+            // 클래스가 참조하는 가변 객채를
+            // clone 메소드 실행 시에 같이 복제되도록 해줘야 한다.
+            result.elements = elements.clone();
+            return result;
+        }catch (CloneNotSupportedException e){
+            throw new AssertionError();
+        }
     }
 
     public static void main(String[] args) throws CloneNotSupportedException {
-        // Stack 내부에 있는 elements라는 가변 객체는 clone될 때 복사되지 않아서
-        // s1과 s2는 다른 객체지만 각각의 내부에 있는 elements는 같은 객체를 참조하기 때문에 치명적인 오류가 발생할 수 있다.
         Stack s1 = new Stack();
         Stack s2 = (Stack) s1.clone();
     }
