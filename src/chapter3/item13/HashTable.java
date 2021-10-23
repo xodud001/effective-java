@@ -14,7 +14,11 @@ public class HashTable implements Cloneable{
             this.next = next;
         }
 
-
+        Entry deepCopy(){
+            // 이 Entry가 가리키는 연결 리스트를 재귀적으로 복사
+            return new Entry(key, value,
+                next == null ? null : next.deepCopy());
+        }
     }
 
     public void put(Object key, Object value){
@@ -26,7 +30,11 @@ public class HashTable implements Cloneable{
         try{
             HashTable result = (HashTable)super.clone();
             result.buckets = new Entry[buckets.length];
-
+            // buckets가 담고 있는 객체까지 복제를 해줘야 한다.
+            for (int i = 0; i < buckets.length; i++) {
+                if(buckets[i] != null)
+                    result.buckets[i] = buckets[i].deepCopy();
+            }
             return result;
         }catch (CloneNotSupportedException e){
             throw new AssertionError();
@@ -35,8 +43,6 @@ public class HashTable implements Cloneable{
     }
 
     public static void main(String[] args) {
-        // HashTable의 clone을 호출하면
-        // HashTable 내의 buckets는 복제가 되었지만 buckets에 담겨있는 Entry가 복제되지 않아서 문제가 생김
         HashTable h1 = new HashTable();
         h1.put("key", "value");
         HashTable h2 = h1.clone();
