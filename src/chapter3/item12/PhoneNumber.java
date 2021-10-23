@@ -43,13 +43,14 @@ public class PhoneNumber {
 
     @Override
     public String toString() {
-        return areaCode + "-" + prefix + "-" + lineNum;
+        return String.format("%03d-%03d-%03d", areaCode, prefix, lineNum);
     }
 
     public static void main(String[] args) {
         // toString을 재정의 하지 않았기 때문에 쓸모 없는 로그만 남는다
         PhoneNumber phoneNumber = new PhoneNumber((short)111,(short)111,(short)111);
         System.out.println(phoneNumber + "에 연결할 수 없습니다.");
+        System.out.println(phoneNumber);
     }
 
     public static void println(String s){
