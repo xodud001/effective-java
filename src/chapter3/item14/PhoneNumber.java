@@ -1,9 +1,15 @@
 package chapter3.item14;
 
+import java.util.Comparator;
+
 public class PhoneNumber implements Cloneable, Comparable<PhoneNumber>{
     private int hashCode; // 0으로 자동 초기화
     private final short areaCode, prefix, lineNum;
-    
+    private static final Comparator<PhoneNumber> COMPARATOR =
+            Comparator.comparingInt( (PhoneNumber pn) -> pn.areaCode)
+                    .thenComparingInt(pn -> pn.prefix)
+                    .thenComparingInt(pn -> pn.lineNum);
+
     public PhoneNumber(short areaCode, short prefix, short lineNum) {
         this.areaCode = rangeCheck(areaCode, 999, "지역코드") ;
         this.prefix = rangeCheck(prefix, 999, "프리픽스");
@@ -65,16 +71,7 @@ public class PhoneNumber implements Cloneable, Comparable<PhoneNumber>{
 
     @Override
     public int compareTo(PhoneNumber pn) {
-        // compareTo 메소드에서 <와 >를 사용하는 것은 거추장스럽고 오류를 유발함
-        // 이제는 클래스들이 가지고 있는 compare 메소드 사용을 추천
-
-        int result = Short.compare(areaCode, pn.areaCode);
-        if(result == 0){
-            result = Short.compare(prefix, pn.prefix);
-            if(result == 0){
-                result = Short.compare(lineNum, pn.lineNum);
-            }
-        }
-        return result;
+        // Comparator를 사용하면 코드는 더 깔끔해지지만 성능이 약간 저하된다.
+        return COMPARATOR.compare(this, pn);
     }
 }
