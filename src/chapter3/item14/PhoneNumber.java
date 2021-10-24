@@ -5,10 +5,7 @@ import java.util.Comparator;
 public class PhoneNumber implements Cloneable, Comparable<PhoneNumber>{
     private int hashCode; // 0으로 자동 초기화
     private final short areaCode, prefix, lineNum;
-    private static final Comparator<PhoneNumber> COMPARATOR =
-            Comparator.comparingInt( (PhoneNumber pn) -> pn.areaCode)
-                    .thenComparingInt(pn -> pn.prefix)
-                    .thenComparingInt(pn -> pn.lineNum);
+    private static final Comparator<PhoneNumber> hashCodeOrder = (o1, o2) -> o1.hashCode() - o2.hashCode;
 
     public PhoneNumber(short areaCode, short prefix, short lineNum) {
         this.areaCode = rangeCheck(areaCode, 999, "지역코드") ;
@@ -71,7 +68,6 @@ public class PhoneNumber implements Cloneable, Comparable<PhoneNumber>{
 
     @Override
     public int compareTo(PhoneNumber pn) {
-        // Comparator를 사용하면 코드는 더 깔끔해지지만 성능이 약간 저하된다.
-        return COMPARATOR.compare(this, pn);
+        return hashCodeOrder.compare(this, pn);
     }
 }
