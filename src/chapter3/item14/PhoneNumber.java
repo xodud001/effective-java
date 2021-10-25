@@ -5,7 +5,7 @@ import java.util.Comparator;
 public class PhoneNumber implements Cloneable, Comparable<PhoneNumber>{
     private int hashCode; // 0으로 자동 초기화
     private final short areaCode, prefix, lineNum;
-    private static final Comparator<PhoneNumber> hashCodeOrder = (o1, o2) -> o1.hashCode() - o2.hashCode;
+    private static final Comparator<PhoneNumber> hashCodeOrder = (o1, o2) -> Integer.compare(o1.hashCode(), o2.hashCode);
 
     public PhoneNumber(short areaCode, short prefix, short lineNum) {
         this.areaCode = rangeCheck(areaCode, 999, "지역코드") ;
