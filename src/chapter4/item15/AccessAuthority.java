@@ -7,6 +7,8 @@ import java.util.List;
 public class AccessAuthority {
 
     private static final String[] PRIVATE_VALUES = {"ONE", "TWO", "THREE"};
-    public static final List<String> VALUES = List.of(PRIVATE_VALUES);
 
+    public static final String[] values(){
+        return PRIVATE_VALUES.clone();
+    }
 }
