@@ -1,10 +1,28 @@
 package chapter4.item16;
 
 public class Point {
-    // 클래스의 필드를 public으로 설정하면 많은 문제가 따른다
-    // API를 수정하지 않고는 내부 표현을 변경할 수 없고
-    // 불변식을 보장할 수 없으며
-    // 외부에서 필드에 접근할 때 부수 작업을 수행할 수도 없다.
-    public double x;
-    public double y;
+    // 필드를 private로 바꾸고 접근자와 설정자를 만든다.
+    // 클래스를 사용하는 클라이언트는 접근자에 의존하기 때문에
+    // 내부 구현은 수정해도 문제가 없다
+    private double x;
+    private double y;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public double getX() {
+        return x;
+    }
+    public double getY() {
+        return y;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+    public void setY(double y) {
+        this.y = y;
+    }
 }
