@@ -7,9 +7,14 @@ public class Point {
     private double x;
     private double y;
 
-    public Point(double x, double y) {
+    // 필드를 final로 설정하면 불변식은 보장할 수 있지만
+    // 이외의 단점을은 그대로 유지된다.
+    public final double z;
+
+    public Point(double x, double y, double z) {
         this.x = x;
         this.y = y;
+        this.z = z;
     }
 
     public double getX() {
