@@ -1,8 +1,16 @@
 package chapter4.item17;
 
+// 불변 객체는 근본적으로 스레드 안전하여 따로 동기화할 필요 없다.
+// 불변 객체는 안심하고 공유할 수 있다.
 public class Complex {
     private final double re;
     private final double im;
+
+    // 불변 클래스라면 한번 만든 인스턴스를 최대한 재활용하고
+    // 재활용을 쉽게 하려면 자주 쓰이는 값들을 상수로 제공하는 것이다.
+    public static final Complex ZERO = new Complex(0, 0);
+    public static final Complex ONE = new Complex(1, 0);
+    public static final Complex I = new Complex(0, 1);
 
     public Complex(double re, double im) {
         this.re = re;
