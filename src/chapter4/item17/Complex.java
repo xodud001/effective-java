@@ -12,11 +12,18 @@ public class Complex {
     public static final Complex ONE = new Complex(1, 0);
     public static final Complex I = new Complex(0, 1);
 
-    public Complex(double re, double im) {
+    // 클래스가 불변임을 보장하려면 자신을 상속하지 못하게 해야함.
+    // 모든 생성자를 private or package-private로 만들고
+    // public 정적 팩터리를 제공하는 방법이다
+    private Complex(double re, double im) {
         this.re = re;
         this.im = im;
     }
 
+    public static Complex valueOf(double re, double im){
+        return new Complex(re, im);
+    }
+    
     public double realPart() { return re; }
     public double imaginaryPart() { return im; }
 
