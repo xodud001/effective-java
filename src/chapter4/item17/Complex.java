@@ -23,7 +23,7 @@ public class Complex {
     public static Complex valueOf(double re, double im){
         return new Complex(re, im);
     }
-    
+
     public double realPart() { return re; }
     public double imaginaryPart() { return im; }
 
