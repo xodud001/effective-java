@@ -1,17 +1,13 @@
 package chapter4.item18;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
-public class InstrumentedHashSet<E> extends HashSet<E> {
+public class InstrumentedHashSet<E> extends ForwardingSet<E> {
     //추가된 원소의 수
     private int addCount = 0;
 
-    public InstrumentedHashSet(){}
-
-    public InstrumentedHashSet(int initCap, float loadFactor){
-        super(initCap, loadFactor);
+    public InstrumentedHashSet(Set<E> s){
+        super(s);
     }
 
     @Override
@@ -31,7 +27,7 @@ public class InstrumentedHashSet<E> extends HashSet<E> {
     }
 
     public static void main(String[] args) {
-        InstrumentedHashSet<String> s = new InstrumentedHashSet<>();
+        InstrumentedHashSet<String> s = new InstrumentedHashSet<>(new TreeSet<>());
         s.addAll(List.of("틱", "틱틱", "탕"));
         // 3이라고 예상하겠지만 실제로 6이 나옴
         // addAll을 하면 내부에서 반복문을 통해 add를 호출하므로
