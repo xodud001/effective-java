@@ -31,3 +31,10 @@ class Rectangle extends Figure{
         return length * width;
     }
 }
+
+// 기존 클래스를 상속받아 유연한게 확장
+class Square extends Rectangle{
+    Square(double side){
+        super(side, side);
+    }
+}
