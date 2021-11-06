@@ -13,6 +13,8 @@ public class Stack<E> {
     // 실체화 불가 타입으로는 배열을 만들 수 없다.
     // 제약을 대놓고 우회해서 제네릭 배열 생성
     // 컴파일러는 오류 대신 경고를 표시함
+    // 어노테이션을 이용해 경고를 무시하도록 설정
+    @SuppressWarnings("unchecked")
     public Stack(){
         elements = (E[]) new Object[DEFAULT_INITIAL_CAPACITY];
     }
