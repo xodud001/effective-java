@@ -10,8 +10,11 @@ public class Stack<E> {
     private static final int DEFAULT_INITIAL_CAPACITY = 16;
 
     // 하지만 여기서 컴파일 되지 않는다.
+    // 실체화 불가 타입으로는 배열을 만들 수 없다.
+    // 제약을 대놓고 우회해서 제네릭 배열 생성
+    // 컴파일러는 오류 대신 경고를 표시함
     public Stack(){
-        elements = new E[DEFAULT_INITIAL_CAPACITY];
+        elements = (E[]) new Object[DEFAULT_INITIAL_CAPACITY];
     }
 
     public void push(E e){
