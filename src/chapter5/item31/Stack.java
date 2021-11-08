@@ -34,8 +34,8 @@ public class Stack<E> {
             elements = Arrays.copyOf(elements, 2 * size + 1);
         }
     }
-
-    public void pushAll(Iterable<E> src){
+    // 매개변수에 와일드카드 타입을 적용해 해결
+    public void pushAll(Iterable<? extends E> src){
         for(E e : src)
             push(e);
     }
@@ -43,10 +43,7 @@ public class Stack<E> {
     public static void main(String[] args) {
         Stack<Number> numberStack = new Stack<>();
         Iterable<Integer> integers = new ArrayList<Integer>(Arrays.asList(1, 2, 3));
-        // 매개변수화 타입은 불공변이기 때문에
-        // Integer가 Number의 하위 타입이더라도
-        // List<Integer>는 List<Number>의 하위 타입이 아니다.
-        // 때문에 List<Number>에 Integer 타입을 넣을 수 없다
+        // 와일드카드 타입을 이용하면 Number로 선언되어도 Integer를 넣을 수 있다.
         numberStack.pushAll(integers);
     }
 }
