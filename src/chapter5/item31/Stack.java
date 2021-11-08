@@ -44,8 +44,8 @@ public class Stack<E> {
         return !(size == 0);
     }
 
-
-    public void popAll(Collection<E> dst){
+    // super 와일드카드를 이용해 문제를 해결
+    public void popAll(Collection<? super E> dst){
         while( !isEmpty())
             dst.add(pop());
     }
@@ -56,8 +56,6 @@ public class Stack<E> {
         numberStack.pushAll(integers);
 
         Collection<Object> obj = new ArrayList<>();
-        // Collection<Number>가 제공되어야 하지만 Collection<Object>가 제공되어 경고가 표시
-        // 이전과 마찬가지로 매개변수화 타입은 불공변이기 때문에 와일드카드 타입을 사용해야 함함
-        numberSack.popAll(obj);
+        numberStack.popAll(obj);
     }
 }
