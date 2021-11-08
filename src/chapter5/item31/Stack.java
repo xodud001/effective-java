@@ -2,6 +2,7 @@ package chapter5.item31;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.EmptyStackException;
 
 // 아이템 7에서 다룬 Stack을 제네릭으로 변경
@@ -39,11 +40,24 @@ public class Stack<E> {
         for(E e : src)
             push(e);
     }
+    public boolean isEmpty(){
+        return !(size == 0);
+    }
 
+
+    public void popAll(Collection<E> dst){
+        while( !isEmpty())
+            dst.add(pop());
+    }
     public static void main(String[] args) {
         Stack<Number> numberStack = new Stack<>();
         Iterable<Integer> integers = new ArrayList<Integer>(Arrays.asList(1, 2, 3));
         // 와일드카드 타입을 이용하면 Number로 선언되어도 Integer를 넣을 수 있다.
         numberStack.pushAll(integers);
+
+        Collection<Object> obj = new ArrayList<>();
+        // Collection<Number>가 제공되어야 하지만 Collection<Object>가 제공되어 경고가 표시
+        // 이전과 마찬가지로 매개변수화 타입은 불공변이기 때문에 와일드카드 타입을 사용해야 함함
+        numberSack.popAll(obj);
     }
 }
