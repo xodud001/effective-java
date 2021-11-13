@@ -1,28 +1,44 @@
 package chapter6.item34;
 
-// 상수별 메소드 구현을 활용
+// 상수별 메소드 구현에 데이터를 활용
 public enum Operation {
-    PLUS{
+    PLUS("+"){
         public double apply(double x, double y) {
             return x + y;
         }
     },
-    MINUS{
+    MINUS("-"){
         public double apply(double x, double y) {
             return x - y;
         }
     },
-    TIMES{
+    TIMES("*"){
         public double apply(double x, double y) {
             return x * y;
         }
     },
-    DIVIDE{
+    DIVIDE("/"){
         public double apply(double x, double y) {
             return x / y;
         }
     };
+    private final String symbol;
 
-    // 상수별 함수를 정의하기 위한 추상 메서드
-    public abstract double apply(double x, double y);
+    Operation(String symbol) {
+        this.symbol = symbol;
+    }
+    
+   public abstract double apply(double x, double y);
+
+    @Override
+    public String toString() {
+        return symbol;
+    }
+
+    public static void main(String[] args) {
+        double x = 2;
+        double y = 4;
+        for(Operation op : Operation.values())
+            System.out.printf("%f %s %f = %f%n", x, op, y, op.apply(x, y));
+    }
 }
