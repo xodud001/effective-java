@@ -1,10 +1,7 @@
 package chapter6.item37;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Plant {
     enum LifeCycle { ANNUAL, PERENNIAL, BIENNIAL }
@@ -33,16 +30,14 @@ public class Plant {
         garden.add(new Plant("김동고", LifeCycle.PERENNIAL));
         garden.add(new Plant("동반꿀", LifeCycle.ANNUAL));
 
-        Set<Plant>[] plantsByLifeCycle = (Set<Plant>[]) new Set[LifeCycle.values().length];
+        Map<Plant.LifeCycle, Set<Plant>> plantsByLifeCycle = new EnumMap<>(Plant.LifeCycle.class);
 
-        for (int i = 0; i < plantsByLifeCycle.length ; i++)
-            plantsByLifeCycle[i] = new HashSet<>();
+        for (LifeCycle lc : LifeCycle.values())
+            plantsByLifeCycle.put(lc, new HashSet<>());
 
         for (Plant plant : garden)
-            plantsByLifeCycle[plant.lifeCycle.ordinal()].add(plant);
+            plantsByLifeCycle.get(plant.lifeCycle).add(plant);
 
-        for (int i = 0; i < plantsByLifeCycle.length; i++) {
-            System.out.printf("%s: %s%n", Plant.LifeCycle.values()[i], plantsByLifeCycle[i]);
-        }
+        System.out.println(plantsByLifeCycle);
     }
 }
