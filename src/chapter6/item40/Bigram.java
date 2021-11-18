@@ -17,7 +17,8 @@ public class Bigram {
         return 31 * first + second;
     }
 
-    // equals를 재정의 한게 아니라 오버라이딩 해서 예상과 다르게 동작하게 됨
+    //해당 메소드를 Override 하겠다 명시적으로 선언하면 잘못되 부분에 대해 컴파일 에러가 발생
+    @Override
     public boolean equals(Bigram b) {
         return b.first == first && b.second == second;
     }
