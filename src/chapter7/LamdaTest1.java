@@ -9,6 +9,6 @@ public class LamdaTest1 {
     public static void main(String[] args) {
         List<String> words = new ArrayList<>();
 
-        Collections.sort(words, (o1, o2) -> Integer.compare(o1.length(), o2.length()));
+        Collections.sort(words, Comparator.comparingInt(String::length));
     }
 }
