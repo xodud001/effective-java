@@ -16,6 +16,6 @@ public class Item49 {
         if(m.signum() <= 0){
             throw new ArithmeticException("계수(m)은 양수여야 합니다." + m);
         }
-        return 10 % m;
+        return new BigInteger(String.valueOf(100)).mod(m);
     }
 }
