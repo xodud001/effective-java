@@ -14,7 +14,7 @@ class SparklingWine extends Wine{
     }
 }
 
-class Champagne extends Wine{
+class Champagne extends SparklingWine{
     @Override
     String name() {
         return "샴페인";
