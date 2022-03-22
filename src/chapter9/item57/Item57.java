@@ -9,12 +9,17 @@ public class Item57 {
 
     public static void main(String[] args) {
         List<Element> c = new ArrayList<>();
-        // 컬렉션이나 배열을 순회하는 권장 관용구
-        for (Element e : c) {
+
+        // 지역변수의 범위가 커져서 i와 i2를 2개 선언 했지만 복사 붙여넣기의 실수로
+        // i만 사용되는 실수를 범할 수 있다.
+        Iterator<Element> i = c.iterator();
+        while (i.hasNext()) {
+            Element next = i.next();
         }
 
-        // 반복자가 필요할 때의 관용구
-        for(Iterator<Element> i = c.iterator(); i.hasNext(); ){
+        Iterator<Element> i2 = c.iterator();
+        while (i.hasNext()) {
+            Element next = i.next();
         }
 
     }
