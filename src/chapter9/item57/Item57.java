@@ -13,8 +13,8 @@ public class Item57 {
         for(Iterator<Element> i = c.iterator(); i.hasNext(); ){
             Element next = i.next();
         }
-        for(Iterator<Element> i2 = c.iterator(); i.hasNext(); ){
-            Element next = i.next();
+        for(Iterator<Element> i2 = c.iterator(); i2.hasNext(); ){
+            Element next = i2.next();
         }
 
     }
