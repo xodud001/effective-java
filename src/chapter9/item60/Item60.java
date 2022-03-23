@@ -1,13 +1,21 @@
 package chapter9.item60;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 public class Item60 {
 
     public static void main(String[] args) {
-        double funds = 1.00; // 1달러
+        final BigDecimal TEN_CENTS = new BigDecimal(".10");
+
         int itemsBought = 0;
+        BigDecimal funds = new BigDecimal("1.00"); // 1달러
+
         // 물건을 10센트, 20센트, 30센트.... 순으로 구매
-        for (double price = 0.10; funds >= price; price += 0.10) {
-            funds -= price;
+        for (BigDecimal price = TEN_CENTS;
+                funds.compareTo(price) >= 0;
+                price = price.add(TEN_CENTS)) {
+            funds = funds.subtract(price);
             itemsBought++;
         }
         // 10센트, 20센트, 30센트, 40센트면 1달러기 때문에
